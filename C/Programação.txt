@@ -1,0 +1,222 @@
+#include <stdio.h>
+
+
+void positivos(int *Valores)
+{
+int i, numero;
+for( i = 0; i < 10; i++)
+{
+    printf("Valores:");
+    scanf("%d", &numero);
+    if (numero % 2 != 0)
+    {
+      i--;
+      puts("Tem de ser numero par!");
+    }
+    else
+      Valores[i] = numero;
+    puts("\n");
+}
+}
+
+int main()
+{
+int valores[10], i;
+
+positivos(valores);
+
+printf("Valores maior que 10:");
+for(i = 0; i < 10; i++)
+{
+    if(valores[i] > 10)
+        printf("%d\t",valores[i]);
+}
+return 0;
+} 
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <stdio.h>
+#include <stdLib.h>
+#include <string.h>
+
+typedef struct Nome {
+    char PNome[20];
+    char SNome[20];
+}N;
+char* nomeSobre(N nome, char Name[20]);
+
+int main()
+{
+    FILE fd;
+    N Nomes[20];
+    char NomesFinais[20][20];
+    int i;
+
+    for (i = 0; i < 20; i++)
+    {
+        printf("Nome:");
+        scanf("%s", Nomes[i].PNome);
+        printf("\nSobrenome:");
+        scanf("%s", Nomes[i].SNome);
+        nomeSobre(Nomes[i], NomesFinais[i]);
+    }
+    for (i = 0; i < 20; i++)
+    {
+        printf("%s", NomesFinais[i]);
+    }
+}
+
+char* nomeSobre(N nome, char Name[20])
+{
+    int i = 0;
+    strcpy(Name, nome.SNome);
+    do
+    {
+        if (i == 0)
+            Name[i] += 0x20;
+        else
+            Name[i] -= 0x20;
+        i++;
+    } while (Name[i] != '\0');
+    Name[i] = nome.PNome[0] + 0x20;
+    Name[i + 1] = '\0';
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+Implemente um programa principal que escreva no ecrã as strings "Turma_PL_yyyy", com yyyy os anos entre 2005 e 2022.
+Utilize uma função que receba, como parâmetro de entrada, um vetor de carateres, e o apresente no ecrã com todos os carateres em maiúsculas.
+O programa principal deverá informar o utilizador do número total de strings escritas no ecrã.
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void maiusculas(char *s);
+
+int main()
+{
+	char str[]="Turma_PL_";   
+	int i, num=0;
+	
+	maiusculas(str);		// "TURMA_PL_"
+	
+	for(i=2005;i<=2022;i++, num++)
+		printf("\n%s%d",str,i);
+		
+	printf("\nForam criadas %d strings.",num);
+	return(0);
+}
+
+void maiusculas(char *s)
+{
+	strupr(s);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void juntar(char *t);
+int separar(char *t,char p[30][20]);  
+
+int main()
+{
+	char texto[]="Estudo em Vila Real.\nUTAD a minha universidade.\nEngenharia Informatica o meu curso.";
+	char palavras[30][20];	// Array de 30 strings de 20 carateres cada
+	int i,n;
+	
+	printf("\nTexto original:\n%s\n",texto);
+	
+	juntar(texto);
+	printf("\nTexto sem paragrafos:\n%s\n",texto);
+	
+	n=separar(texto,palavras);
+	printf("\nO texto tem %d carateres e %d palavras.\n",strlen(texto),n);
+	
+	for(i=0;i<n;i++)
+		printf("\n%s",palavras[i]);
+	
+	return(0);
+}
+
+void juntar(char *t)
+{
+	int i;
+	
+	for(i=0;i<strlen(t);i++)
+		if(t[i]=='\n')
+			t[i]=' ';
+}
+
+int separar(char *t,char p[30][20])
+{
+	int i, j=0, k=0, pal=1;
+	
+	for(i=0;i<strlen(t);i++)
+	{
+		if(t[i]!=' ')
+		{
+			p[j][k]=t[i];
+			k++;
+		}
+		else
+		{
+			p[j][k]='\0';
+			j++;
+			k=0;
+			pal++;
+		}
+	}
+	return(pal);	// tambem podia retornar j+1, em vez de pal
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+Crie um programa principal que permita armazenar numa string uma data de nascimento lida do teclado. 
+Implemente a função "Validar" a qual deverá verificar se a data de nascimento foi introduzida com o formato X\X\X 
+em que X representa os campos da data de nascimento. O programa principal deverá notificar o utilizador sobre a 
+validade da data de nascimento introduzida.
+*/
+
+#include <stdio.h>
+#include <string.h>
+
+int Validar(char *data)
+{
+    int encontrados = 0;
+    int i;
+    
+    for (i=0; i<strlen(data); i++)
+    {
+        if (data[i] == '\\')
+            encontrados++;
+    }
+    
+    if (encontrados == 2)
+        return 1;
+    else
+        return 0;
+}
+
+int main()
+{
+    char data[10];
+    
+    printf("Data de nascimento: ");
+    scanf("%s", data);
+    
+    if (Validar(data) == 1)
+        printf("Data de nascimento valida!");
+    else
+        printf("Data de nascimento invalida!");
+    
+    return 0;
+}

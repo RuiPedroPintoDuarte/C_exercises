@@ -1,0 +1,169 @@
+#include <stdio.h>
+
+int main ()
+{
+	int num;
+	
+	printf ("Insira um numero : \n");
+	scanf ("%i", &num);
+	
+	if (num % 2 == 0){
+        printf ("O numero %i e par ",num);
+    }else {
+        printf("O numero %i e impar ",num);
+    }
+	
+}
+
+-------------------------------------------------------------------
+#include <time.h>
+#include <stdlib.h>
+int main ()
+{
+
+srand(time(NULL));  
+int r = rand();  
+
+  if (r%3 == 0) 
+   {
+	printf ("O numero e divisivel por 3");
+   }  
+   
+   else 
+   {
+   	printf ("O numero nao e divivel por 3 ");
+   }
+    
+}
+-----------------------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+ int main()
+ {
+ 	float d,e;
+ 	char unidade;
+ 	printf("Que conversao vai usar:\n");
+ 	printf("Euro-dolar: d\n");
+ 	printf("Dolar-euro: e\n");
+ 	 scanf("%c", &unidade );
+ 	
+ 
+ 	
+ 	switch(unidade){
+ 	 	
+	case'd':
+ 	printf("Qual valor deseja converter:");
+ 	scanf("%f",&e);
+ 	d=e*1.09;
+ 	printf("O valor em dolares e:\n");
+ 	printf("%.2f",d);
+ 	break;
+ 	 		
+ 	case'e':
+ 	printf("Qual valor deseja converter:");
+ 	scanf("%f",&d);
+ 	e=d*0.91;
+ 	printf("O valor em euros e:\n");
+ 	printf("%.2f",e);
+ 	
+ 	break;
+ 	default:
+ 		printf("O valor que introduziu nao esta correto");
+ 	}
+	  return 0;
+ }
+
+-----------------------------------------------------------------------------
+#include <stdio.h>
+
+int main ()
+{
+	char letra;
+	
+	do 
+	{
+        printf("Insira a letra 'a' para parar o loop : \n ");
+        letra = getchar(); 
+        getchar();
+	}
+	
+	while (letra != 'a');
+	
+	return 0 ; 
+}
+----------------------------------------------------------------------------------
+#include <stdio.h>
+
+void main(void)
+{
+ 
+int i ;
+int num ;
+int menor ;
+
+printf ("Introduza o primeiro numero: ");
+    scanf ("%d", &num);
+    menor = num;
+
+for(i=1;i<5;i++)
+{   
+    if(num>=0 && num%2 == 0 ){
+	printf("Insira um numero:\n");
+	scanf("%d",&num);
+     }
+     else {
+    printf("Insira um numero INTEIRO E POSITIVO:\n");
+	scanf("%d",&num);
+	 }
+     
+	if (num < menor)
+    {
+	menor = num ;
+    }
+	
+}
+printf("O menor numero e : %d \n", menor);
+
+system("pause");
+}
+------------------------------------------------------------------------------------
+#include <stdio.h>
+
+int main ()
+{
+	 
+	float prec ,media,soma,max,min,i;
+	printf ("Introduza o primeira precipitacao: \n ");
+    scanf ("%f", &prec);
+    min = prec;
+	
+	for (i=0; i<3; i++)
+	{
+		printf ("Insira os valores da precipitacao : \n ");
+		scanf("%f",&prec);
+	
+        soma= soma+prec ; 
+	    media = soma / 3 ;
+	    
+        }
+        	    	
+	if (prec > max)
+	{
+		prec=max;
+	    scanf("%f",&max);
+	}
+	else if (prec<min)
+	{
+		min = prec;
+		scanf("%f",&min);
+	}
+	else 
+	{
+		printf("Erro");
+	}
+	   
+	 printf ("A media da percipitacao e: %.2f \n", media);
+	 printf ("A maxima da percipitacao e: %.2f \n", max);
+	 printf ("A minima da percipitacao e: %.2f \n", min);
+}
